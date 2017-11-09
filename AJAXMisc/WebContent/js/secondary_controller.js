@@ -3,4 +3,5 @@ $(document).ready( function(){
     //A partir de este punto se pueden crear funciones para realizar control lógico sobre el HTML
      //Clear console
      console.clear();
+     
 });
