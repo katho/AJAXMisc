@@ -32,16 +32,17 @@ public class SimpleRequestResponse extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("applicationjson");
+		//Construir el mensaje por defecto, por si falla...
 		JsonObject joDefault = new JsonObject();
         joDefault.addProperty("mensaje", "error");
         String jsonResult = joDefault.toString();
-        
+        //Obtener el JSON que me envió AJAX
 		JsonObject jo = JSONHandler.getJsonObject(request.getReader());
 		String mensaje = jo.get("mensaje").getAsString();
 		System.out.println(mensaje);
 		
 		
-		 // Escribir el JSON
+		 // Escribir el JSON y regresarlo como respuesta al frontend
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
         	joDefault = new JsonObject();
