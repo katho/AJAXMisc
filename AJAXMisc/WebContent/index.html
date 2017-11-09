@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Lo necesario para que la página sea responsive -->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+   <!-- Lo necesario para que la página sea responsive -->
+  </head>
+  <body >    
+    <div class="container">
+        <h3>Iniciando</h3>
+        <p>
+            Este botón realiza una función simple, envía una JSON a un servlet en mi aplicación.<br>
+            Observe la consola para ver el resultado de presionar el botón.
+        </p>
+        <button type="button" class="btn btn-primary" id="btn-test-1">Solo presiona</button>
+        <br>
+        <p>
+        Este es el código en AJAX con el me comunico con el servlet, nótese que en mi anotation
+        he colocado lo siguiente:<br>
+        <pre>
+        @WebServlet(name = "/SimpleRequestResponse" , urlPatterns="/simple-request-response")
+        </pre><br>
+        Esto quiere decir que voy a usar la ruta especificada en urlPatterns en AJAX para
+        alcanzar al servlet.<br><br>
+        El bloque que sigue es el código en AJAX del archivo main_controller.js:<br><br>
+        <pre>
+        	$.ajax({
+	            url: "http://localhost:8080/AJAXMisc/simple-request-response", 
+	            type: "POST",
+	            //Qué espero recibir de la ruta
+	            contentType: "application/json",
+	            //Que tipo de datos te voy a enviar
+	            dataType: "json",
+	            data: JSON.stringify(objetoJSON),
+	
+	            //Servlet existe y me devolvió un JSON
+	            success: function(data, textStatus, jqXHR) {
+	                console.log("Si el acceso al servlet fue correcto");
+	                console.log(data.mensaje); 
+	            },
+	            error: function(jqXHR, textStatus, errorThrown) {
+	                console.log(jqXHR);
+	                console.log(textStatus);
+	                console.log(errorThrown);
+	            }
+        	});
+        </pre> 
+        </p>
+    </div>   
+    <!-- JQuery, Popper & Bootstrap para hacer cosas suaves en la interfaz -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS --> 
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script> 
+    <script type="text/javascript" src="js/bootstrap.min.js" ></script>
+    <!-- Referencia al controlador, aquí se realizan las funciones lógicas de control
+    sobre la IU -->
+    <script type="text/javascript" src="js/main_controller.js"></script>
+  </body>
+</html>
